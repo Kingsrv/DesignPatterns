@@ -1,7 +1,6 @@
 package creational.prototypeAndRegistry;
 
 public class Client {
-
     public static StudentRegistry fillUpRegister(StudentRegistry studentRegistry){
         Student aprBatch = new Student();
         aprBatch.setBatchName("Apr-LLD");

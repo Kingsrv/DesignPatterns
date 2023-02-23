@@ -9,7 +9,5 @@ public class Client {
         UIFactory factory = flutter.createUIFactory();
         Menu menu = factory.createMenu();
         Button button = factory.createButton();
-
-        Math.sqrt(19);
     }
 }
