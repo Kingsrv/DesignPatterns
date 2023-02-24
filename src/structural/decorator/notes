@@ -1,0 +1,12 @@
+You are a Software Engineer at Vadilal and you have to build an ice-cream ordering system.
+
+The application takes order for ice cream cones.
+
+Ice- cream can have different config.
+
+cost and the description of ice cream needs to be printed as output.
+
+
+step 1: Design an interface/abstract class that represent the thing that we are constructing.
+
+step 2 : There are two types of ingredient

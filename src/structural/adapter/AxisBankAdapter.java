@@ -16,7 +16,7 @@ public class AxisBankAdapter implements BankApiAdapter{
     }
 
     @Override
-    public boolean authenticate(String accNo, String pin) {
+    public boolean  authenticate(String accNo, String pin) {
         return false;
     }
 
