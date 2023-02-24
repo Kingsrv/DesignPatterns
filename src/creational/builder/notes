@@ -1,0 +1,156 @@
+Def	Allows you to construct complex objects step by step.
+	Allows you to produce different types and representations of an object using the same construction code
+
+Why?	Imagine a complex object that requires laborious step by step initialization of many fields and nested objects. Such initialization is usually buried inside a monstrous constructor with lots of parameters or scattered all over the client code.
+
+Steps to create Builder	1. Create a static builder class inside required class (nested / inner class)
+	2. Create a public static method called builder() - which returns the object of builder class
+	3. Create setter methods inside the builder class, which set the value an also return the builder object
+	4. Create the build() method inside the builder class, which does the validations and returns a required class object
+	Make the constructors private for both builder and required class
+
+Implement	Package builder;
+
+	Public class Main{
+	        Public static void main(String[]args)throwsException{
+
+	                Studentstudent=Student.builder()
+	                .setId(1)
+	                .setPsp(81)
+	                .setName("tiyasha")
+	                .setGradYear(2022)
+	                .setAge(21)
+	                .build();
+
+	                System.out.println(student.getName());
+	                System.out.println(student.getAge());
+	}
+	}
+
+	packagebuilder;
+
+	Public class Student{
+	        privateintid;
+	        privateintpsp;
+	        privateStringname;
+	        privateintgradYear;
+	        privateintage;
+
+	        privateStudent(Builderbuilder){
+	                this.id=builder.id;
+	                this.psp=builder.psp;
+	                this.name=builder.name;
+	                this.gradYear=builder.gradYear;
+	                this.age=builder.age;
+	        }
+
+	        publicstaticBuilderbuilder(){
+	                Builderbuilder1=newBuilder();
+	                returnbuilder1;
+	        }
+
+	        publicintgetId(){
+	                returnid;
+	        }
+
+	        publicvoidsetId(intid){
+	                this.id=id;
+	        }
+
+	        publicintgetPsp(){
+	                returnpsp;
+	        }
+
+	        publicvoidsetPsp(intpsp){
+	                this.psp=psp;
+	        }
+
+	        publicStringgetName(){
+	                returnname;
+	        }
+
+	        publicvoidsetName(Stringname){
+	                this.name=name;
+	        }
+
+	        publicintgetGradYear(){
+	                returngradYear;
+	        }
+
+	        publicvoidsetGradYear(intgradYear){
+	                this.gradYear=gradYear;
+	        }
+
+	        publicintgetAge(){
+	                returnage;
+	        }
+
+	        publicvoidsetAge(intage){
+	                this.age=age;
+	        }
+
+	        staticclassBuilder{
+	                privateintid;
+	                privateintpsp;
+	                privateStringname;
+	                privateintgradYear;
+	                privateintage;
+
+	                Private Builder(){
+	                }
+
+
+	                publicBuildersetId(intid){
+	                        this.id=id;
+	                        returnthis;
+	                }
+
+	                publicBuildersetPsp(intpsp){
+	                        this.psp=psp;
+	                        returnthis;
+	                }
+
+	                publicBuildersetName(Stringname){
+	                        this.name=name;
+	                        returnthis;
+	                }
+
+	                publicBuildersetGradYear(intgradYear){
+	                        this.gradYear=gradYear;
+	                        returnthis;
+	                }
+
+	                publicBuildersetAge(intage){
+	                        this.age=age;
+	                        returnthis;
+	                }
+
+	                publicStudentbuild()throwsException{
+	                        if(gradYear>=2023){
+	                        thrownewException("gradyearisnotvalid");
+	                        }
+
+	                        if(age<18){
+	                        thrownewException("ageisnotvalid");
+	                        }
+
+	                        if(psp<80){
+	                        thrownewException("pspisnotvalid");
+	                        }
+	                        Studentstudent=newStudent(this);
+	                        returnstudent;
+	                }
+	        }
+	}
+Applicability	1. Get rid of telescoping constructor - suppose you have a constructor with ten parameters. Calling such a beast is very inconvenient, you overload the constructor and create several shorter versions with fewer parameters. Still the constructor refers the main one, by passing some default values to the omitted parameters.
+
+	2. Able to create different representation of some product.
+
+Pros	1. Construct objects step  by step
+	2. Reuse same construction code
+	3. Single responsibility principle
+
+Cons	Overall complexity of the code increases due to creation of multiple new classes.
+Real Time example 	String Builder
+
+	In Java, the builder design pattern is used in the StringBuilder class. StringBuilder contains the append() method to construct string step-by-step, and finally, we call the toString() method to get the constructed string object.
