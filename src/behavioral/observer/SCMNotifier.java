@@ -3,7 +3,7 @@ package behavioral.observer;
 public class SCMNotifier implements OrderPlacedSubscriber{
     public SCMNotifier() {
         Amazon a = Amazon.getInstance();
-        a.registerSubscriber(this);
+        a.registerOrderPlacedSubscriber(this);
     }
 
     @Override

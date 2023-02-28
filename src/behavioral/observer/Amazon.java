@@ -6,6 +6,7 @@ import java.util.List;
 public class Amazon {
 
     List<OrderPlacedSubscriber> orderPlacedSubscribers = new ArrayList<>();
+    List<OrderCancelledSubscriber> orderCancelledSubscribers = new ArrayList<>();
 
     //make the publisher class singleton as we do not want multiple publisher objects because we have only one list
     private Amazon(){
@@ -21,8 +22,12 @@ public class Amazon {
         return instance;
         }
 
-    public void registerSubscriber(OrderPlacedSubscriber orderPlacedSubscriber){
+    public void registerOrderPlacedSubscriber(OrderPlacedSubscriber orderPlacedSubscriber){
         orderPlacedSubscribers.add(orderPlacedSubscriber);
+    }
+
+    public void registerOrderCancelledSubscriber(OrderCancelledSubscriber orderCancelledSubscriber){
+        orderCancelledSubscribers.add(orderCancelledSubscriber);
     }
 
     public void unRegisterSubscriber(OrderPlacedSubscriber orderPlacedSubscriber){
@@ -41,6 +46,12 @@ public class Amazon {
         //business logic
         for (OrderPlacedSubscriber o: orderPlacedSubscribers) {
             o.orderPlaceEvent();
+        }
+    }
+
+    public void orderCancelledEvent(){
+        for (OrderCancelledSubscriber o: orderCancelledSubscribers) {
+            o.orderCancelledEvent();
         }
     }
 }
